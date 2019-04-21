@@ -1,9 +1,12 @@
 package test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import main.BowlingGame;
 
 class BowlingGameTest {
 	
@@ -16,7 +19,10 @@ class BowlingGameTest {
 
 	@Test
 	void given0BallsThrown_whenGetScore_return0() {
-		fail("Not yet implemented");
+		
+		int actual = game.getScore();
+		
+		assertEquals(0, actual);
 	}
 
 }
