@@ -127,5 +127,50 @@ class BowlingGameTest {
 		
 		assertEquals(53, actual);
 	}
+	
+	@Test
+	void givenAPerfectGame_whenGetScore_thenReturn300() {
+		
+		for (int i = 0; i < 12; ++i) {			
+			game.throwBall(10);
+		}
+		
+		int actual = game.getScore();
+		
+		assertEquals(300, actual);
+	}
+	
+	@Test
+	void givenGameIsOnLastFrame_andPerfectScoreSoFar_whenThrow10Fells9_andThrow11Fells1_andBonusThrow1Fells8_thenReturn277() {
+		
+		// 30, 30, 30, 30, 30, 30, 30, 29, 20, 18 
+		
+		for (int i = 0; i < 9; ++i) {	
+			game.throwBall(10);
+		}
+		game.throwBall(9);
+		game.throwBall(1);
+		game.throwBall(8); // Bonus throw
+		
+		int actual = game.getScore();
+		
+		assertEquals(277, actual);
+	}
+	
+	@Test
+	void givenAFinishedGame_whenABallIsThrown_thenNoChangeInScore() {
+		
+		for (int i = 0; i < 12; ++i) {			
+			game.throwBall(10);
+		}
+		
+		int finalScore = game.getScore();
+		
+		game.throwBall(1);
+		
+		int actual = game.getScore();
+		
+		assertEquals(finalScore, actual);
+	}
 
 }

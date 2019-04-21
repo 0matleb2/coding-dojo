@@ -25,7 +25,9 @@ public class Frame {
 	}
 	
 	public void activateNextFrame() {
-		next.setState(new Active(next));
+		if (next != null) {			
+			next.setState(new Active(next));
+		}
 	}
 
 	public void throwBall(int pinsFelled) {
