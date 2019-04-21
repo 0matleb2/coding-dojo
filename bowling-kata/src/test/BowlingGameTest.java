@@ -1,7 +1,6 @@
 package test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -61,7 +60,7 @@ class BowlingGameTest {
 	void givenASpareOnFrame1_whenGetScore_thenReturn10() {
 		
 		game.throwBall(7);
-		game.throwBall(0);
+		game.throwBall(3);
 		
 		int actual = game.getScore();
 		
