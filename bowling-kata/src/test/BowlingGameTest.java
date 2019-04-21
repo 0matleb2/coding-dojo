@@ -87,7 +87,7 @@ class BowlingGameTest {
 		
 		int actual = game.getScore();
 		
-		assertEquals(26, actual);
+		assertEquals(27, actual);
 	}
 	
 	@Test
@@ -99,7 +99,7 @@ class BowlingGameTest {
 		
 		int actual = game.getScore();
 		
-		assertEquals(27, actual);
+		assertEquals(28, actual);
 	}
 	
 	@Test
