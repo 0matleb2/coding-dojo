@@ -19,8 +19,11 @@ public class Active extends FrameState {
 	
 	@Override
 	public void nextState() {
-		if (throwsRemaining == 0 && pinsFelled == 10) {			
+		if (throwsRemaining == 0 && pinsFelled == 10) {
 			frame.setState(new Spare(frame));
+			frame.activateNextFrame();
+		} else if (throwsRemaining == 1 && pinsFelled == 10) {
+			frame.setState(new Strike(frame));
 			frame.activateNextFrame();
 		}
 	}

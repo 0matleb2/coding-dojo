@@ -4,8 +4,8 @@ public abstract class FrameState {
 	
 	Frame frame;
 	
-	public FrameState(Frame context) {
-		this.frame = context;
+	public FrameState(Frame frame) {
+		this.frame = frame;
 	}
 	
 	public abstract void throwBall(int pinsFelled);
