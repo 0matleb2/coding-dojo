@@ -1,20 +1,19 @@
-package books.test;
-import static books.Books.I;
-import static books.Books.II;
-import static books.Books.III;
-import static books.Books.IV;
-import static books.Books.V;
+package test;
+import static main.Books.I;
+import static main.Books.II;
+import static main.Books.III;
+import static main.Books.IV;
+import static main.Books.V;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import books.BookDiscountCalculator;
-import books.Books;
+import main.BookDiscountCalculator;
+import main.Books;
 
 class BookDiscountCalculatorTest {
 	
@@ -28,9 +27,9 @@ class BookDiscountCalculatorTest {
 	}
 
 	@Test
-	void givenNoBooks_whenCalculateCost_returnZero() {
+	void given0Books_whenCalculateCost_returnZero() {
 		
-		List<Books> books = new ArrayList<>();
+		List<Books> books = Arrays.asList();
 		
 		calculator.setBooks(books);
 		
@@ -40,47 +39,58 @@ class BookDiscountCalculatorTest {
 	}
 	
 	@Test
-	void givenTwoUniqueBooks_whenCalculateCost_returnCostWithDiscount() {
+	void given1Book_whenCalculateCost_returnBookCost() {
+		
+		List<Books> books = Arrays.asList(I);
+		
+		calculator.setBooks(books);
+		
+		double result = calculator.calculateTotalCost();
+		
+		assertEquals(BookDiscountCalculator.BOOK_COST, result, EPSILON);
+	}
+	
+	@Test
+	void given2UniqueBooks_whenCalculateCost_returnCostWithDiscount() {
 		
 		List<Books> books = Arrays.asList(I, II);
 		
 		calculator.setBooks(books);
 
-		double expected = BookDiscountCalculator.BOOK_COST * books.size() * BookDiscountCalculator.DISCOUNTS[books.size()];
+		double expected = getSetCost(2);
 		double actual = calculator.calculateTotalCost();
 		
 		assertEquals(expected, actual, EPSILON);
 	}
 	
 	@Test
-	void givenThreeUniqueBooks_whenCalculateCost_returnCostWithDiscount() {
+	void given3UniqueBooks_whenCalculateCost_returnCostWithDiscount() {
 		
 		List<Books> books = Arrays.asList(I, II, III);
 		
 		calculator.setBooks(books);
 
-		double expected = BookDiscountCalculator.BOOK_COST * books.size() * BookDiscountCalculator.DISCOUNTS[books.size()];
+		double expected = getSetCost(3);
 		double actual = calculator.calculateTotalCost();
 		
 		assertEquals(expected, actual, EPSILON);
 	}
 	
 	@Test
-	void givenThreeUniqueBooksAndOneDuplicate_whenCalculateCost_returnCostWithDiscountForFirstSetAndNoDiscountForDuplicate() {
+	void given3UniqueBooksAnd1Duplicate_whenCalculateCost_returnCostWithDiscountForFirstSetAndNoDiscountForDuplicate() {
 		
 		List<Books> books = Arrays.asList(I, II, III, III);
 		
 		calculator.setBooks(books);
 
-		double expected = BookDiscountCalculator.BOOK_COST * 3 * BookDiscountCalculator.DISCOUNTS[3]
-				+ BookDiscountCalculator.BOOK_COST * 1 * BookDiscountCalculator.DISCOUNTS[1];
+		double expected = getSetCost(3) + getSetCost(1);
 		double actual = calculator.calculateTotalCost();
 		
 		assertEquals(expected, actual, EPSILON);
 	}
 	
 	@Test
-	void given12BooksOrLess_whenCalculateCost_returnCostWithOptimalDiscount() {
+	void given12Books_whenCalculateCost_returnCostWithOptimalDiscount() {
 			
 			List<Books> books = Arrays.asList(
 					I, II, III, IV,
@@ -97,7 +107,25 @@ class BookDiscountCalculatorTest {
 	}
 	
 	@Test
-	void givenMoreThan12Books_andBooksAreMostlyDuplicates_whenCalculateCost_returnCostWithApproximateOptimalDiscount() {
+	void given13Books_whenCalculateCost_returnCostWithApproximateOptimalDiscount() {
+			
+			List<Books> books = Arrays.asList(
+					I, II, III, IV,
+					I, II, III, V,
+					I, II, III, IV, V
+					);
+			
+			calculator.setBooks(books);
+
+			double expected = getSetCost(4) * 2
+					+ getSetCost(5);
+			double actual = calculator.calculateTotalCost();
+			
+			assertEquals(expected, actual, EPSILON);
+	}
+	
+	@Test
+	void givenManyBooks_andBooksAreMostlyDuplicates_whenCalculateCost_returnCostWithApproximateOptimalDiscount() {
 			
 			List<Books> books = Arrays.asList(
 					I, I, I, I,

@@ -1,4 +1,4 @@
-package books;
+package main;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -39,8 +39,8 @@ public class BookDiscountCalculator {
 	/**
 	 * This method returns the total cost of the books having applied the discounts.
 	 * <ul>
-	 * <li>Given the number of books is 12 or less, this method will ensure the best possible discount is applied.</li>
-	 * <li>Given the number of books is more than 12, an optimal discount will be approximated and applied.</li>
+	 * 	<li>Given the number of books is 12 or less, this method will ensure the best possible discount is applied.</li>
+	 * 	<li>Given the number of books is more than 12, an optimal discount will be approximated and applied.</li>
 	 * </ul>
 	 */
 	public double calculateTotalCost() {
@@ -60,13 +60,13 @@ public class BookDiscountCalculator {
 	
 	double getOptimalCost() {
 		
-		List<List<Books>> minPartition = getOptimalPartition(books);
+		List<List<Books>> partition = getOptimalPartition(books);
 		
-		sortPartition(minPartition);
+		sortPartition(partition);
 		
-		System.out.printf("Optimal partition: %s\n", minPartition);
+		System.out.printf("Optimal partition: %s\n", partition);
 		
-		return calculatePartitionCost(minPartition);
+		return calculatePartitionCost(partition);
 	}
 	
 	void sortPartition(List<List<Books>> partition) {
@@ -84,13 +84,13 @@ public class BookDiscountCalculator {
 		
 		List<List<Books>> removedSets = new ArrayList<>();
 			
-		for (int setSize = Books.values().length; setSize > 0; --setSize) {
+		for (int setSize = Books.size(); setSize > 0; --setSize) {
 			
 			while (books.size() > APPROXIMATION_THRESHOLD && hasSetOfSize(books, setSize)) {
 				
 				Set<Books> set = new HashSet<Books>(books);
 				
-				for (Books book : new HashSet<Books>(books)) {
+				for (Books book : set) {
 					books.remove(book);
 				}
 				
@@ -98,15 +98,15 @@ public class BookDiscountCalculator {
 			}
 		}
 		
-		List<List<Books>> minPartition = getOptimalPartition(books);
+		List<List<Books>> partition = getOptimalPartition(books);
 		
-        minPartition.addAll(removedSets);
+        partition.addAll(removedSets);
 
-        sortPartition(minPartition);
+        sortPartition(partition);
         
-        System.out.printf("Approximate optimal partition: %s\n", minPartition);
+        System.out.printf("Approximate optimal partition: %s\n", partition);
         
-        return calculatePartitionCost(minPartition);		
+        return calculatePartitionCost(partition);		
 	}
 	
 	boolean hasSetOfSize(List<Books> books, int size) {
@@ -114,24 +114,25 @@ public class BookDiscountCalculator {
 	}
 	
 	List<List<Books>> getOptimalPartition(List<Books> books) {
+		
         List<List<List<Books>>> partitions = new ArrayList<>();
-
-        for (int blocks = 1; blocks <= books.size(); ++blocks) {
-            for (List<List<Books>> partition : new PartitionIterable<>(books, blocks)) {
-                if ( isValidPartition(partition) ) {
-                	partitions.add(partition);
-                }
+        
+        int numPartitions = 0;
+        for (int numSubsets = 1, count = 0; numSubsets <= books.size(); ++numSubsets) {
+            for (List<List<Books>> partition : new PartitionIterable<>(books, numSubsets)) {
+            	++numPartitions;
+            	if ( isValidPartition(partition) ) {
+            		partitions.add(partition);
+            	}
             }
         }
         
-        Map<List<List<Books>>, Double> partitionCostMap = partitions.stream()
-			.collect(Collectors.toMap(
-					Function.identity(),
-					partition -> calculatePartitionCost(partition),
-					(oldValue, newValue) -> oldValue)
-					);
+        System.out.printf("Partitions analyzed: %,d\n", numPartitions);
         
-        System.out.printf("Partitions analyzed: %d\n", partitionCostMap.size());
+        Map<List<List<Books>>, Double> partitionCostMap = partitions.stream()
+        		.filter( p -> isValidPartition(p) )
+        		.collect( Collectors.toMap( Function.identity(), partition -> calculatePartitionCost(partition), (oldValue, newValue) -> oldValue ));
+        
                 
         return Collections.min(partitionCostMap.entrySet(), Comparator.comparing(Entry::getValue)).getKey();
 	}
