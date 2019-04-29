@@ -24,5 +24,14 @@ class RomanNumeralTest {
 		
 		assertEquals(1, result);
 	}
+	
+	@Test
+	void givenV_whenGetInt_thenReturn5() {
+		romanNumeral.setNumeral("V");
+		
+		int result = romanNumeral.getInt();
+		
+		assertEquals(5, result);
+	}
 
 }
