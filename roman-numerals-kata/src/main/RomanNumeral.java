@@ -1,13 +1,28 @@
 package main;
 
-public class RomanNumeral {
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
-	public void setNumeral(String string) {
-		
+public class RomanNumeral {
+	
+	private static final Map<String, Integer> LETTER_VALUES = initLetterValues();
+	
+	private static Map<String, Integer> initLetterValues() {
+		Map<String, Integer> letterValues = new HashMap<>();
+		letterValues.put("I", 1);
+		letterValues.put("V", 5);
+		return Collections.unmodifiableMap(letterValues);
+	}
+	
+	String numeral;
+
+	public void setNumeral(String numeral) {
+		this.numeral = numeral;
 	}
 
 	public int getInt() {
-		return 1;
+		return LETTER_VALUES.get(numeral);
 	}
 
 }
