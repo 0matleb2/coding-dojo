@@ -96,5 +96,22 @@ class RomanNumeralTest {
 		
 		assertEquals(300, result);
 	}
-
+	
+	@Test
+	void givenIV_whenGetInt_thenReturn4() {
+		romanNumeral.setNumeral("IV");
+		
+		int result = romanNumeral.getInt();
+		
+		assertEquals(4, result);
+	}
+	
+	@Test
+	void givenVI_whenGetInt_thenReturn6() {
+		romanNumeral.setNumeral("VI");
+		
+		int result = romanNumeral.getInt();
+		
+		assertEquals(6, result);
+	}
 }
