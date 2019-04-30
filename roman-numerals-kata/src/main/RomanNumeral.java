@@ -27,7 +27,11 @@ public class RomanNumeral {
 	}
 
 	public int getInt() {
-		return LETTER_VALUES.get(numeral);
+		int value = 0;
+		for (String letter : numeral.split("")) {
+			value += LETTER_VALUES.get(letter);
+		}
+		return value;
 	}
 
 }
