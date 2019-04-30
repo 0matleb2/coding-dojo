@@ -12,6 +12,11 @@ public class RomanNumeral {
 		Map<String, Integer> letterValues = new HashMap<>();
 		letterValues.put("I", 1);
 		letterValues.put("V", 5);
+		letterValues.put("X", 10);
+		letterValues.put("L", 50);
+		letterValues.put("C", 100);
+		letterValues.put("D", 500);
+		letterValues.put("M", 1000);
 		return Collections.unmodifiableMap(letterValues);
 	}
 	
