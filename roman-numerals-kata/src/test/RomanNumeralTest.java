@@ -78,5 +78,23 @@ class RomanNumeralTest {
 		
 		assertEquals(1000, result);
 	}
+	
+	@Test
+	void givenXX_whenGetInt_thenReturn20() {
+		romanNumeral.setNumeral("XX");
+		
+		int result = romanNumeral.getInt();
+		
+		assertEquals(20, result);
+	}
+	
+	@Test
+	void givenCCC_whenGetInt_thenReturn300() {
+		romanNumeral.setNumeral("CCC");
+		
+		int result = romanNumeral.getInt();
+		
+		assertEquals(300, result);
+	}
 
 }
