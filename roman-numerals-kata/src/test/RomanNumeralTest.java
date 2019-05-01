@@ -114,4 +114,40 @@ class RomanNumeralTest {
 		
 		assertEquals(6, result);
 	}
+	
+	@Test
+	void givenXCIX_whenGetInt_thenReturn99() {
+		romanNumeral.setNumeral("XCIX");
+		
+		int result = romanNumeral.getInt();
+		
+		assertEquals(99, result);
+	}
+	
+	@Test
+	void givenMMMDCCCLXXXVIII_whenGetInt_thenReturn3888() {
+		romanNumeral.setNumeral("MMMDCCCLXXXVIII");
+		
+		int result = romanNumeral.getInt();
+		
+		assertEquals(3888, result);
+	}
+	
+	@Test
+	void givenMDCCCCLXXXXVIIII_whenGetInt_thenReturn1999() {
+		romanNumeral.setNumeral("MDCCCCLXXXXVIIII");
+		
+		int result = romanNumeral.getInt();
+		
+		assertEquals(1999, result);
+	}
+	
+	@Test
+	void givenMIM_whenGetInt_thenReturn1999() {
+		romanNumeral.setNumeral("MIM");
+		
+		int result = romanNumeral.getInt();
+		
+		assertEquals(1999, result);
+	}
 }
