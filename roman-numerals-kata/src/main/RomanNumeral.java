@@ -2,8 +2,9 @@ package main;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class RomanNumeral {
 	
@@ -21,34 +22,38 @@ public class RomanNumeral {
 		return Collections.unmodifiableMap(letterValues);
 	}
 	
-	String numeral;
+	private String numeral;
 
 	public void setNumeral(String numeral) {
 		this.numeral = numeral;
 	}
 
 	public int getInt() {
-		int totalValue = 0;
-		Optional<Character> lastLetter = Optional.empty();
 		
-		for (int i = numeral.length(); i-- > 0;) {
-			char letter = numeral.charAt(i);
-			totalValue += getLetterValue(letter, lastLetter);
-			lastLetter = Optional.of(letter);			
-		}
+		List<Character> letters = numeral.chars().mapToObj(i -> (char)i).collect(Collectors.toList());
+		Collections.reverse(letters);
 		
-		return totalValue;
+		return letters.stream().mapToInt((new LetterValueCalculator())::getLetterValue).sum();
 	}
 	
-	private int getLetterValue(char letter, Optional<Character> lastLetter) {
+	private class LetterValueCalculator {
 		
-		int letterValue = LETTER_VALUES.get(letter);
+		private static final char DEFAULT_CHAR = '\u0000';
 		
-		if ( !lastLetter.isPresent() || letterValue >= LETTER_VALUES.get(lastLetter.get()) ) {
-			return letterValue;
+		private char lastLetter;
+		
+		public int getLetterValue(char letter) {
+			
+			int letterValue = LETTER_VALUES.get(letter);
+			char tmpLastLetter = lastLetter;
+			lastLetter = letter;
+			
+			if ( tmpLastLetter == DEFAULT_CHAR || letterValue >= LETTER_VALUES.get(tmpLastLetter) ) {
+				return letterValue;
+			}
+			
+			return -letterValue;
 		}
-		
-		return -letterValue;	
 	}
 
 }
