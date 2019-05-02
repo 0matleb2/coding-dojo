@@ -8,9 +8,9 @@ import java.util.stream.Collectors;
 
 public class RomanNumeral {
 	
-	private static final Map<Character, Integer> LETTER_VALUES = initLetterValues();
+	private static final Map<Character, Integer> LETTER_VALUES;
 	
-	private static Map<Character, Integer> initLetterValues() {
+	static {
 		Map<Character, Integer> letterValues = new HashMap<>();
 		letterValues.put('I', 1);
 		letterValues.put('V', 5);
@@ -19,15 +19,23 @@ public class RomanNumeral {
 		letterValues.put('C', 100);
 		letterValues.put('D', 500);
 		letterValues.put('M', 1000);
-		return Collections.unmodifiableMap(letterValues);
+		LETTER_VALUES = Collections.unmodifiableMap(letterValues);
 	}
 	
 	private String numeral;
-
+	
+	public RomanNumeral() {
+		
+	}
+	
+	public RomanNumeral(String numeral) {
+		this.numeral = numeral;
+	}
+	
 	public void setNumeral(String numeral) {
 		this.numeral = numeral;
 	}
-
+	
 	public int getInt() {
 		
 		List<Character> letters = numeral.chars().mapToObj(i -> (char)i).collect(Collectors.toList());
