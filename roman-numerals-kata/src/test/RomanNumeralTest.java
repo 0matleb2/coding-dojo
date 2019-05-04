@@ -150,4 +150,14 @@ class RomanNumeralTest {
 		
 		assertEquals(1999, result);
 	}
+	
+	@Test 
+	void givenNumeralSet_whenGetNumeral_thenReturnNumeral() {		
+		final String input = "XVI";
+		romanNumeral.setNumeral(input);
+		
+		String result = romanNumeral.getNumeral();
+		
+		assertEquals(input, result);
+	}
 }
