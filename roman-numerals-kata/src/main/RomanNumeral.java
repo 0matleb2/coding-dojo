@@ -39,6 +39,10 @@ public class RomanNumeral {
 		this.numeral = numeral;
 	}
 	
+	public String getNumeral() {
+		return numeral;
+	}
+	
 	public void setNumeral(String numeral) {
 		this.numeral = numeral;
 	}
