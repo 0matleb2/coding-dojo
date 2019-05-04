@@ -13,14 +13,9 @@ class RomanNumeralTest {
 	
 	static final String input = "XVI";
 
-	@BeforeEach
-	void setUp() {
-		romanNumeral = new RomanNumeral();
-	}
-
 	@Test
 	void givenI_whenGetInt_thenReturn1() {
-		romanNumeral.setNumeral("I");
+		romanNumeral = new RomanNumeral("I");
 		
 		int result = romanNumeral.getInt();
 		
@@ -29,7 +24,7 @@ class RomanNumeralTest {
 	
 	@Test
 	void givenV_whenGetInt_thenReturn5() {
-		romanNumeral.setNumeral("V");
+		romanNumeral = new RomanNumeral("V");
 		
 		int result = romanNumeral.getInt();
 		
@@ -38,7 +33,7 @@ class RomanNumeralTest {
 	
 	@Test
 	void givenX_whenGetInt_thenReturn10() {
-		romanNumeral.setNumeral("X");
+		romanNumeral = new RomanNumeral("X");
 		
 		int result = romanNumeral.getInt();
 		
@@ -47,7 +42,7 @@ class RomanNumeralTest {
 	
 	@Test
 	void givenL_whenGetInt_thenReturn50() {
-		romanNumeral.setNumeral("L");
+		romanNumeral = new RomanNumeral("L");
 		
 		int result = romanNumeral.getInt();
 		
@@ -56,7 +51,7 @@ class RomanNumeralTest {
 	
 	@Test
 	void givenC_whenGetInt_thenReturn100() {
-		romanNumeral.setNumeral("C");
+		romanNumeral = new RomanNumeral("C");
 		
 		int result = romanNumeral.getInt();
 		
@@ -65,7 +60,7 @@ class RomanNumeralTest {
 	
 	@Test
 	void givenD_whenGetInt_thenReturn500() {
-		romanNumeral.setNumeral("D");
+		romanNumeral = new RomanNumeral("D");
 		
 		int result = romanNumeral.getInt();
 		
@@ -74,7 +69,7 @@ class RomanNumeralTest {
 	
 	@Test
 	void givenM_whenGetInt_thenReturn1000() {
-		romanNumeral.setNumeral("M");
+		romanNumeral = new RomanNumeral("M");
 		
 		int result = romanNumeral.getInt();
 		
@@ -83,7 +78,7 @@ class RomanNumeralTest {
 	
 	@Test
 	void givenXX_whenGetInt_thenReturn20() {
-		romanNumeral.setNumeral("XX");
+		romanNumeral = new RomanNumeral("XX");
 		
 		int result = romanNumeral.getInt();
 		
@@ -92,7 +87,7 @@ class RomanNumeralTest {
 	
 	@Test
 	void givenCCC_whenGetInt_thenReturn300() {
-		romanNumeral.setNumeral("CCC");
+		romanNumeral = new RomanNumeral("CCC");
 		
 		int result = romanNumeral.getInt();
 		
@@ -101,7 +96,7 @@ class RomanNumeralTest {
 	
 	@Test
 	void givenIV_whenGetInt_thenReturn4() {
-		romanNumeral.setNumeral("IV");
+		romanNumeral = new RomanNumeral("IV");
 		
 		int result = romanNumeral.getInt();
 		
@@ -110,7 +105,7 @@ class RomanNumeralTest {
 	
 	@Test
 	void givenVI_whenGetInt_thenReturn6() {
-		romanNumeral.setNumeral("VI");
+		romanNumeral = new RomanNumeral("VI");
 		
 		int result = romanNumeral.getInt();
 		
@@ -119,7 +114,7 @@ class RomanNumeralTest {
 	
 	@Test
 	void givenXCIX_whenGetInt_thenReturn99() {
-		romanNumeral.setNumeral("XCIX");
+		romanNumeral = new RomanNumeral("XCIX");
 		
 		int result = romanNumeral.getInt();
 		
@@ -128,7 +123,7 @@ class RomanNumeralTest {
 	
 	@Test
 	void givenMMMDCCCLXXXVIII_whenGetInt_thenReturn3888() {
-		romanNumeral.setNumeral("MMMDCCCLXXXVIII");
+		romanNumeral = new RomanNumeral("MMMDCCCLXXXVIII");
 		
 		int result = romanNumeral.getInt();
 		
@@ -137,7 +132,7 @@ class RomanNumeralTest {
 	
 	@Test
 	void givenMDCCCCLXXXXVIIII_whenGetInt_thenReturn1999() {
-		romanNumeral.setNumeral("MDCCCCLXXXXVIIII");
+		romanNumeral = new RomanNumeral("MDCCCCLXXXXVIIII");
 		
 		int result = romanNumeral.getInt();
 		
@@ -146,20 +141,11 @@ class RomanNumeralTest {
 	
 	@Test
 	void givenMIM_whenGetInt_thenReturn1999() {
-		romanNumeral.setNumeral("MIM");
+		romanNumeral = new RomanNumeral("MIM");
 		
 		int result = romanNumeral.getInt();
 		
 		assertEquals(1999, result);
-	}
-	
-	@Test 
-	void givenANumeralIsSet_whenGetNumeral_thenReturnTheNumeral() {
-		romanNumeral.setNumeral(input);
-		
-		String result = romanNumeral.getNumeral();
-		
-		assertEquals(input, result);
 	}
 	
 	@Test

@@ -29,11 +29,7 @@ public class RomanNumeral {
 		LETTER_VALUES = Collections.unmodifiableMap(letterValues);
 	}
 	
-	private String numeral;
-	
-	public RomanNumeral() {
-		
-	}
+	private final String numeral;
 	
 	public RomanNumeral(String numeral) {
 		this.numeral = numeral;
@@ -41,10 +37,6 @@ public class RomanNumeral {
 	
 	public String getNumeral() {
 		return numeral;
-	}
-	
-	public void setNumeral(String numeral) {
-		this.numeral = numeral;
 	}
 	
 	/**
