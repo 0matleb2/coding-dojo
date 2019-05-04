@@ -10,6 +10,8 @@ import main.RomanNumeral;
 class RomanNumeralTest {
 	
 	RomanNumeral romanNumeral;
+	
+	static final String input = "XVI";
 
 	@BeforeEach
 	void setUp() {
@@ -152,12 +154,20 @@ class RomanNumeralTest {
 	}
 	
 	@Test 
-	void givenNumeralSet_whenGetNumeral_thenReturnNumeral() {		
-		final String input = "XVI";
+	void givenANumeralIsSet_whenGetNumeral_thenReturnTheNumeral() {
 		romanNumeral.setNumeral(input);
 		
 		String result = romanNumeral.getNumeral();
 		
 		assertEquals(input, result);
+	}
+	
+	@Test
+	void givenANumeralIsConstructed_whenGetNumeral_ThenReturnTheNumeral() {
+		romanNumeral = new RomanNumeral(input);
+		
+		String result = romanNumeral.getNumeral();
+		
+		assertEquals(input, result);		
 	}
 }
