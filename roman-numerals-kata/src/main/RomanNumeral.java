@@ -30,38 +30,33 @@ public class RomanNumeral {
 	}
 	
 	private final String numeral;
+	private final int value;
 	
 	public RomanNumeral(String numeral) {
 		this.numeral = numeral;
-	}
-	
-	public String getNumeral() {
-		return numeral;
+		this.value = calculateValue(numeral);
 	}
 	
 	/**
-	 * Converts the roman numeral into the corresponding integer value.
+	 * Converts the string representation of a roman numeral into the corresponding integer value.
 	 * 
 	 * @return The integer value of the roman numeral.
 	 */
-	public int getInt() {
-		
+	private int calculateValue(String numeral) {
 		List<Character> letters = numeral.chars().mapToObj(i -> (char)i).collect(Collectors.toList());
 		Collections.reverse(letters);
-		
-		return letters.stream().mapToInt((new LetterValueCalculator())::getLetterValue).sum();
+		return letters.stream().mapToInt((new LetterValueCalculator())::calculateLetterValue).sum();
 	}
 	
 	/**
-	 * LetterValueCalculator encapsulates the state and logic required for
+	 * LetterValueCalculator encapsulates the state and logic for
 	 * calculating the values of letters in a single RomanNumeral.
-	 *
 	 */
 	private class LetterValueCalculator {
 		
 		private static final char DEFAULT_CHAR = '\u0000';
 		
-		private char lastLetter;
+		private char lastLetter = DEFAULT_CHAR;
 		
 		/**
 		 * Calculates the value of a letter in a roman numeral. This method expects the letters 
@@ -70,7 +65,7 @@ public class RomanNumeral {
 		 * @param letter The next letter in the roman numeral, parsed in reverse order.
 		 * @return The value of the letter.
 		 */
-		public int getLetterValue(char letter) {
+		public int calculateLetterValue(char letter) {
 			
 			int letterValue = LETTER_VALUES.get(letter);
 			char tmpLastLetter = lastLetter;
@@ -83,5 +78,14 @@ public class RomanNumeral {
 			return -letterValue;
 		}
 	}
+	
+	public String toString() {
+		return numeral;
+	}
+
+	public int toInt() {
+		return value;
+	}
+	
 
 }

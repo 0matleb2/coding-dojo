@@ -10,150 +10,148 @@ import main.RomanNumeral;
 class RomanNumeralTest {
 	
 	RomanNumeral romanNumeral;
-	
-	static final String input = "XVI";
 
 	@Test
-	void givenI_whenGetInt_thenReturn1() {
+	void givenRomanNumeral_I_whenConvertToInt_thenReturn1() {
 		romanNumeral = new RomanNumeral("I");
 		
-		int result = romanNumeral.getInt();
+		int result = romanNumeral.toInt();
 		
 		assertEquals(1, result);
 	}
 	
 	@Test
-	void givenV_whenGetInt_thenReturn5() {
+	void givenRomanNumeral_V_whenConvertToInt_thenReturn5() {
 		romanNumeral = new RomanNumeral("V");
 		
-		int result = romanNumeral.getInt();
+		int result = romanNumeral.toInt();
 		
 		assertEquals(5, result);
 	}
 	
 	@Test
-	void givenX_whenGetInt_thenReturn10() {
+	void givenRomanNumeral_X_whenConvertToInt_thenReturn10() {
 		romanNumeral = new RomanNumeral("X");
 		
-		int result = romanNumeral.getInt();
+		int result = romanNumeral.toInt();
 		
 		assertEquals(10, result);
 	}
 	
 	@Test
-	void givenL_whenGetInt_thenReturn50() {
+	void givenRomanNumeral_L_whenConvertToInt_thenReturn50() {
 		romanNumeral = new RomanNumeral("L");
 		
-		int result = romanNumeral.getInt();
+		int result = romanNumeral.toInt();
 		
 		assertEquals(50, result);
 	}
 	
 	@Test
-	void givenC_whenGetInt_thenReturn100() {
+	void givenRomanNumeral_C_whenConvertToInt_thenReturn100() {
 		romanNumeral = new RomanNumeral("C");
 		
-		int result = romanNumeral.getInt();
+		int result = romanNumeral.toInt();
 		
 		assertEquals(100, result);
 	}
 	
 	@Test
-	void givenD_whenGetInt_thenReturn500() {
+	void givenRomanNumeral_D_whenConvertToInt_thenReturn500() {
 		romanNumeral = new RomanNumeral("D");
 		
-		int result = romanNumeral.getInt();
+		int result = romanNumeral.toInt();
 		
 		assertEquals(500, result);
 	}
 	
 	@Test
-	void givenM_whenGetInt_thenReturn1000() {
+	void givenRomanNumeral_M_whenConvertToInt_thenReturn1000() {
 		romanNumeral = new RomanNumeral("M");
 		
-		int result = romanNumeral.getInt();
+		int result = romanNumeral.toInt();
 		
 		assertEquals(1000, result);
 	}
 	
 	@Test
-	void givenXX_whenGetInt_thenReturn20() {
+	void givenRomanNumeral_XX_whenConvertToInt_thenReturn20() {
 		romanNumeral = new RomanNumeral("XX");
 		
-		int result = romanNumeral.getInt();
+		int result = romanNumeral.toInt();
 		
 		assertEquals(20, result);
 	}
 	
 	@Test
-	void givenCCC_whenGetInt_thenReturn300() {
+	void givenRomanNumeral_CCC_whenConvertToInt_thenReturn300() {
 		romanNumeral = new RomanNumeral("CCC");
 		
-		int result = romanNumeral.getInt();
+		int result = romanNumeral.toInt();
 		
 		assertEquals(300, result);
 	}
 	
 	@Test
-	void givenIV_whenGetInt_thenReturn4() {
+	void givenRomanNumeral_IV_whenConvertToInt_thenReturn4() {
 		romanNumeral = new RomanNumeral("IV");
 		
-		int result = romanNumeral.getInt();
+		int result = romanNumeral.toInt();
 		
 		assertEquals(4, result);
 	}
 	
 	@Test
-	void givenVI_whenGetInt_thenReturn6() {
+	void givenRomanNumeral_VI_whenConvertToInt_thenReturn6() {
 		romanNumeral = new RomanNumeral("VI");
 		
-		int result = romanNumeral.getInt();
+		int result = romanNumeral.toInt();
 		
 		assertEquals(6, result);
 	}
 	
 	@Test
-	void givenXCIX_whenGetInt_thenReturn99() {
+	void givenRomanNumeral_XCIX_whenConvertToInt_thenReturn99() {
 		romanNumeral = new RomanNumeral("XCIX");
 		
-		int result = romanNumeral.getInt();
+		int result = romanNumeral.toInt();
 		
 		assertEquals(99, result);
 	}
 	
 	@Test
-	void givenMMMDCCCLXXXVIII_whenGetInt_thenReturn3888() {
+	void givenRomanNumeral_MMMDCCCLXXXVIII_whenConvertToInt_thenReturn3888() {
 		romanNumeral = new RomanNumeral("MMMDCCCLXXXVIII");
 		
-		int result = romanNumeral.getInt();
+		int result = romanNumeral.toInt();
 		
 		assertEquals(3888, result);
 	}
 	
 	@Test
-	void givenMDCCCCLXXXXVIIII_whenGetInt_thenReturn1999() {
+	void givenRomanNumeral_MDCCCCLXXXXVIIII_whenConvertToInt_thenReturn1999() {
 		romanNumeral = new RomanNumeral("MDCCCCLXXXXVIIII");
 		
-		int result = romanNumeral.getInt();
+		int result = romanNumeral.toInt();
 		
 		assertEquals(1999, result);
 	}
 	
 	@Test
-	void givenMIM_whenGetInt_thenReturn1999() {
+	void givenRomanNumeral_MIM_whenConvertToInt_thenReturn1999() {
 		romanNumeral = new RomanNumeral("MIM");
 		
-		int result = romanNumeral.getInt();
+		int result = romanNumeral.toInt();
 		
 		assertEquals(1999, result);
 	}
 	
 	@Test
-	void givenANumeralIsConstructed_whenGetNumeral_ThenReturnTheNumeral() {
-		romanNumeral = new RomanNumeral(input);
+	void givenRomanNumeral_XVI_WhenConvertToString_ThenReturnXVI() {
+		romanNumeral = new RomanNumeral("XVI");
 		
-		String result = romanNumeral.getNumeral();
+		String result = romanNumeral.toString();
 		
-		assertEquals(input, result);		
+		assertEquals("XVI", result);		
 	}
 }
