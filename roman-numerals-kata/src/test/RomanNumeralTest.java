@@ -147,8 +147,78 @@ class RomanNumeralTest {
 	}
 	
 	@Test
-	void givenInvalidRomanNumeral_MIM_thenThrowIllegalArgumentException() {
-		assertThrows(IllegalArgumentException.class, () -> romanNumeral = new RomanNumeral("MIM"));
+	void givenInvalidRomanNumeral_DM_thenThrowIllegalArgumentException() {
+		assertThrows(IllegalArgumentException.class, () -> romanNumeral = new RomanNumeral("DM"));
+	}
+	
+	@Test
+	void givenInvalidRomanNumeral_LM_thenThrowIllegalArgumentException() {
+		assertThrows(IllegalArgumentException.class, () -> romanNumeral = new RomanNumeral("LM"));
+	}
+	
+	@Test
+	void givenInvalidRomanNumeral_XM_thenThrowIllegalArgumentException() {
+		assertThrows(IllegalArgumentException.class, () -> romanNumeral = new RomanNumeral("XM"));
+	}
+	
+	@Test
+	void givenInvalidRomanNumeral_VM_thenThrowIllegalArgumentException() {
+		assertThrows(IllegalArgumentException.class, () -> romanNumeral = new RomanNumeral("VM"));
+	}
+	
+	@Test
+	void givenInvalidRomanNumeral_IM_thenThrowIllegalArgumentException() {
+		assertThrows(IllegalArgumentException.class, () -> romanNumeral = new RomanNumeral("IM"));
+	}
+	
+	@Test
+	void givenInvalidRomanNumeral_LD_thenThrowIllegalArgumentException() {
+		assertThrows(IllegalArgumentException.class, () -> romanNumeral = new RomanNumeral("LD"));
+	}
+	
+	@Test
+	void givenInvalidRomanNumeral_XD_thenThrowIllegalArgumentException() {
+		assertThrows(IllegalArgumentException.class, () -> romanNumeral = new RomanNumeral("XD"));
+	}
+	
+	@Test
+	void givenInvalidRomanNumeral_VD_thenThrowIllegalArgumentException() {
+		assertThrows(IllegalArgumentException.class, () -> romanNumeral = new RomanNumeral("VD"));
+	}
+	
+	@Test
+	void givenInvalidRomanNumeral_ID_thenThrowIllegalArgumentException() {
+		assertThrows(IllegalArgumentException.class, () -> romanNumeral = new RomanNumeral("ID"));
+	}
+	
+	@Test
+	void givenInvalidRomanNumeral_LC_thenThrowIllegalArgumentException() {
+		assertThrows(IllegalArgumentException.class, () -> romanNumeral = new RomanNumeral("LC"));
+	}
+	
+	@Test
+	void givenInvalidRomanNumeral_VC_thenThrowIllegalArgumentException() {
+		assertThrows(IllegalArgumentException.class, () -> romanNumeral = new RomanNumeral("VC"));
+	}
+	
+	@Test
+	void givenInvalidRomanNumeral_IC_thenThrowIllegalArgumentException() {
+		assertThrows(IllegalArgumentException.class, () -> romanNumeral = new RomanNumeral("IC"));
+	}
+	
+	@Test
+	void givenInvalidRomanNumeral_VL_thenThrowIllegalArgumentException() {
+		assertThrows(IllegalArgumentException.class, () -> romanNumeral = new RomanNumeral("VL"));
+	}
+	
+	@Test
+	void givenInvalidRomanNumeral_IL_thenThrowIllegalArgumentException() {
+		assertThrows(IllegalArgumentException.class, () -> romanNumeral = new RomanNumeral("IL"));
+	}
+	
+	@Test
+	void givenInvalidRomanNumeral_VX_thenThrowIllegalArgumentException() {
+		assertThrows(IllegalArgumentException.class, () -> romanNumeral = new RomanNumeral("VX"));
 	}
 	
 	@Test
