@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
@@ -33,8 +34,17 @@ public class RomanNumeral {
 	private final int value;
 	
 	public RomanNumeral(String numeral) {
+		validateNumeral(numeral);
 		this.numeral = numeral;
 		this.value = calculateValue(numeral);
+	}
+	
+	private void validateNumeral(String numeral) throws IllegalArgumentException {
+		boolean containsInvalidSubtractions = Pattern.matches("[DLXVI]M|[LXVI]D|[LVI]C|[VI]L|VX", numeral);
+		
+		if (containsInvalidSubtractions) {
+			throw new IllegalArgumentException();
+		}
 	}
 	
 	/**
