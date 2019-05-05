@@ -1,9 +1,12 @@
 package main;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -35,7 +38,7 @@ public class RomanNumeral {
 	
 	public RomanNumeral(String numeral) {
 		validateNumeral(numeral);
-		this.numeral = numeral;
+		this.numeral = reduceNumeral(numeral);
 		this.value = calculateValue(numeral);
 	}
 	
@@ -45,6 +48,24 @@ public class RomanNumeral {
 		if (containsInvalidSubtractions) {
 			throw new IllegalArgumentException();
 		}
+	}
+	
+	private String reduceNumeral(String numeral) {
+		Pattern fourOfAKind = Pattern.compile("([IXC])\\1{3}");
+		Matcher matcher = fourOfAKind.matcher(numeral);
+		StringBuffer reducedNumeral = new StringBuffer();
+		while (matcher.find()) {
+			String letter = matcher.group(1);
+			String higherDenominationLetter = getHigherDenomination(letter);
+			matcher.appendReplacement(reducedNumeral, letter + higherDenominationLetter);
+		}
+		matcher.appendTail(reducedNumeral);
+		return reducedNumeral.toString();
+	}
+	
+	private String getHigherDenomination(String letter) {
+		List<String> letters = Arrays.asList("I", "V", "X", "L", "C", "D", "M");
+		return letters.get(letters.indexOf(letter) + 1);
 	}
 	
 	/**
