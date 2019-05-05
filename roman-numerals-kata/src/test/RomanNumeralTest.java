@@ -1,8 +1,8 @@
 package test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import main.RomanNumeral;
@@ -129,7 +129,7 @@ class RomanNumeralTest {
 	}
 	
 	@Test
-	void givenRomanNumeral_MDCCCCLXXXXVIIII_whenConvertToInt_thenReturn1999() {
+	void givenExpandedRomanNumeral_MDCCCCLXXXXVIIII_whenConvertToInt_thenReturn1999() {
 		romanNumeral = new RomanNumeral("MDCCCCLXXXXVIIII");
 		
 		int result = romanNumeral.toInt();
@@ -138,12 +138,17 @@ class RomanNumeralTest {
 	}
 	
 	@Test
-	void givenRomanNumeral_MIM_whenConvertToInt_thenReturn1999() {
-		romanNumeral = new RomanNumeral("MIM");
+	void givenExpandedRomanNumeral_MDCCCCLXXXXVIIII_whenConvertToString_thenReturnReduction_MDCDLXLVIV() {
+		romanNumeral = new RomanNumeral("MDCCCCLXXXXVIIII");
 		
-		int result = romanNumeral.toInt();
+		String result = romanNumeral.toString();
 		
-		assertEquals(1999, result);
+		assertEquals("MDCDLXLVIV", result);
+	}
+	
+	@Test
+	void givenInvalidRomanNumeral_MIM_thenThrowIllegalArgumentException() {
+		assertThrows(IllegalArgumentException.class, () -> romanNumeral = new RomanNumeral("MIM"));
 	}
 	
 	@Test
