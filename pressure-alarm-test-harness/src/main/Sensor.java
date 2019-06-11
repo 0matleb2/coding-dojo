@@ -2,8 +2,7 @@ package main;
 
 import java.util.Random;
 
-public class Sensor
-{
+public class Sensor implements PsiSensor {
     public static final double OFFSET = 16;
 
     public double popNextPressurePsiValue()
